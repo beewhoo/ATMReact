@@ -6,8 +6,11 @@
     "react-scripts": "0.7.0"
   },
   "dependencies": {
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "babel-runtime": "^6.26.0",
+    "react": "^15.6.2",
+    "react-bootstrap": "^0.32.4",
+    "react-bootstrap-dialog": "^0.10.0",
+    "react-dom": "^15.6.2"
   },
   "scripts": {
     "start": "react-scripts start",

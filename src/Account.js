@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Dialog from 'react-bootstrap-dialog'
+
 
 export default class Account extends Component {
   constructor(props) {
@@ -10,12 +12,13 @@ export default class Account extends Component {
 
     this.handleDepositClick = this.handleDepositClick.bind(this)
     this.handleWithdrawClick = this.handleWithdrawClick.bind(this)
+
   }
 
   handleDepositClick(e) {
     e.preventDefault();
     if (isNaN(this.refs.amount.value) || this.refs.amount.value < 0) {
-      console.log("Not a number");
+      this.dialog.showAlert('Invalid number!')
     }
     else {
       let amount =+ this.refs.amount.value;
@@ -31,7 +34,7 @@ export default class Account extends Component {
   handleWithdrawClick(e) {
     e.preventDefault();
     if (isNaN(this.refs.amount.value) || this.refs.amount.value < 0) {
-      console.log("Not a number");
+      this.dialog.showAlert('Invalid number!')
     }
     else if (this.state.balance >= this.refs.amount.value) {
       let amount = +this.refs.amount.value;
@@ -44,7 +47,8 @@ export default class Account extends Component {
       })
       this.refs.amount.value = '';
     } else {
-      console.log('insufficient fund!');
+        this.dialog.showAlert('Insufficient Funds!')
+
     }
   }
 
@@ -67,6 +71,7 @@ export default class Account extends Component {
         <input type="text" placeholder="enter an amount" ref="amount" />
         <input type="button" value="Deposit" onClick={this.handleDepositClick} />
         <input type="button" value="Withdraw" onClick={this.handleWithdrawClick} />
+        <Dialog ref={(el) => { this.dialog = el }} />
       </div>
     )
   }
