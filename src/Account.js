@@ -33,11 +33,8 @@ export default class Account extends Component {
     if (isNaN(this.refs.amount.value) || this.refs.amount.value < 0) {
       console.log("Not a number");
     }
-    else {
+    else if (this.state.balance >= this.refs.amount.value) {
       let amount = +this.refs.amount.value;
-
-
-
       let newBalance = this.state.balance - amount;
       if (newBalance < 0) {
         newBalance = 0
@@ -46,6 +43,8 @@ export default class Account extends Component {
         balance: newBalance
       })
       this.refs.amount.value = '';
+    } else {
+      console.log('insufficient fund!');
     }
   }
 
